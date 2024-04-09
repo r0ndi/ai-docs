@@ -34,8 +34,8 @@ Chatbot for company documentation based on local LLM model and vector db
     ```
 
 ## Scripts and others
-`npm run start:dev` - start application from ts
-`npm run scripts:build-database` - scrap and build .md files from sources
+- `npm run start:dev` - start application from ts
+- `npm run scripts:build-database` - scrap and build .md files from sources
 
 ## Author
 Konrad Sądel @ 2024
