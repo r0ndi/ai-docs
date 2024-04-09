@@ -1,0 +1,9 @@
+# generatic
+node_modules
+qdrant_storage
+dist
+
+# others
+.env
+sources/*
+!sources/.gitkeep

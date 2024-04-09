@@ -1,0 +1,31 @@
+{
+  "name": "ai-docs",
+  "version": "1.0.0",
+  "main": "src/boot.ts",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/boot.js",
+    "start:dev": "ts-node src/boot.ts",
+    "scripts:build-database": "ts-node src/scripts/database-builder.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@qdrant/js-client-rest": "^1.7.0",
+    "axios": "^1.6.8",
+    "dotenv": "^16.4.5",
+    "langchain": "^0.1.31",
+    "ollama": "^0.5.0",
+    "ramda": "^0.29.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.2",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "@types/axios": "^0.14.0",
+    "@types/node": "^20.11.28",
+    "@types/ramda": "^0.29.12",
+    "@types/uuid": "^9.0.8"
+  }
+}
