@@ -1,13 +1,13 @@
 export type Settings = {
   llm: {
     host: string
-    model: Model
-    embeddingModel: Model
+    model: string
   }
   qdrant: {
     url: string
     vectorSize: number
     scoreThreshold: number
+    onDisk: boolean
   }
 }
 
@@ -18,15 +18,11 @@ export type ErrorHandler = {
 }
 
 export type SourceFile = {
+  id: string
+  parentId: string
   source: string
   title: string
   content: string
-}
-
-export enum Model {
-  LLAMA2 = 'llama2',
-  LLAMA2_13B = 'llama2:13b',
-  LLAMA2_70B = 'llama2:70b',
 }
 
 export type QdrantItem = {

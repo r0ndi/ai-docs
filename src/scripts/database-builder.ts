@@ -13,7 +13,7 @@ process.on('unhandledRejection', handleError)
 
 const BATCH_SIZE = 10
 const COLLECTION_NAME = 'documents'
-const UUID_NAMESPACE = '00000000-0000-0000-0000-000000000000'
+const UUID_NAMESPACE = 'a4eec4ee-77df-46b0-83eb-b13ccf46d2f4'
 
 async function main(): Promise<void> {
   const sources = await getSources()
@@ -37,10 +37,10 @@ async function insertItems(sources: SourceFile[]): Promise<void> {
 
 async function prepareItems(sources: SourceFile[]): Promise<QdrantItem[]> {
   const client = await ollamaService.createClient()
-  const prepareItem = async ({ content, title, source }: SourceFile): Promise<QdrantItem> => ({
+  const prepareItem = async ({ content, title, source, parentId }: SourceFile): Promise<QdrantItem> => ({
     vector: await ollamaService.getEmbedding(client, content),
     id: v5(title, UUID_NAMESPACE),
-    payload: { title, source, content },
+    payload: { parentId, title, source, content },
   })
 
   return Promise.all(sources.map(prepareItem))
@@ -64,11 +64,14 @@ async function parseSourceFile(sourceDir: string, filename: string): Promise<Sou
   const loader = new TextLoader(`${sourceDir}/${filename}`)
   const [{ pageContent }] = await loader.load()
   const contents = parseContent(pageContent)
-  return contents.map((content: string, index: number): SourceFile => ({
-    content,
-    source: filename,
-    title: `${index}: ${parseTitle(content)}`,
-  }))
+  const parentId = v5(filename, UUID_NAMESPACE)
+  return contents.map((content: string, index: number) => parseSourceFilePart(parentId, filename, content, index))
+}
+
+function parseSourceFilePart(parentId: string, source: string, content: string, index: number): SourceFile {
+  const title = parseTitle(content)
+  const id = v5(`${index}: ${title}`, UUID_NAMESPACE)
+  return { id, parentId, title, content, source }
 }
 
 main()

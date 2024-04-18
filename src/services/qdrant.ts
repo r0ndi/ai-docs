@@ -10,11 +10,9 @@ export async function deleteCollection(client: QdrantClient, collectionName: str
   return client.deleteCollection(collectionName)
 }
 
-export async function createCollection(
-  client: QdrantClient, collectionName: string, onDisk: boolean = false,
-): Promise<void> {
+export async function createCollection(client: QdrantClient, collectionName: string): Promise<void> {
   await client.createCollection(collectionName, {
-    vectors: { size: settings.qdrant.vectorSize, distance: 'Cosine', on_disk: onDisk },
+    vectors: { size: settings.qdrant.vectorSize, distance: 'Cosine', on_disk: settings.qdrant.onDisk },
   })
 }
 

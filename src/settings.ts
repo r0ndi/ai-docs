@@ -1,4 +1,4 @@
-import { Model, Settings } from './types/local'
+import { Settings } from './types/local'
 import dotenv from 'dotenv'
 import path from 'path'
 
@@ -8,12 +8,12 @@ dotenv.config({ path: configPath })
 export const settings: Settings = {
   llm: {
     host: process.env.OLLAMA_HOST || '',
-    embeddingModel: Model.LLAMA2_13B,
-    model: Model.LLAMA2_13B,
+    model: process.env.LLM_MODEL || '',
   },
   qdrant: {
     url: process.env.QDRANT_URL || '',
-    scoreThreshold: 0.4,
-    vectorSize: 5120,
+    scoreThreshold: parseFloat(process.env.QDRANT_SCORE_THRESHOLD || ''),
+    vectorSize: parseInt(process.env.QDRANT_VECTOR_DIM || ''),
+    onDisk: process.env.QDRANT_ON_DISK === 'true',
   }
 }

@@ -7,7 +7,7 @@ export async function createClient(): Promise<Ollama> {
 
 export async function chat(ollama: Ollama, systemMessage: string, userMessage: string): Promise<string> {
   const { message } = await ollama.chat({
-    model: settings.llm.embeddingModel,
+    model: settings.llm.model,
     messages: [
       { role: 'system', content: systemMessage },
       { role: 'user', content: userMessage },
@@ -17,6 +17,6 @@ export async function chat(ollama: Ollama, systemMessage: string, userMessage: s
 }
 
 export async function getEmbedding(ollama: Ollama, prompt: string): Promise<number[]> {
-  const { embedding } = await ollama.embeddings({ model: settings.llm.embeddingModel, prompt })
+  const { embedding } = await ollama.embeddings({ model: settings.llm.model, prompt })
   return embedding
 }
