@@ -4,8 +4,8 @@ import * as assistentService from './services/assistent'
 process.on('unhandledRejection', handleError)
 
 async function main() {
-  const question = 'Example question from user'
-  const response = await assistentService.getAssistentAnswer(question)
+  const query = process.argv.slice(2).join(' ')
+  const response = await assistentService.getAssistentAnswer(query)
 
   console.log('======= ======= Response ======= =======')
   console.log(response.message)

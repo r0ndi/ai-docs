@@ -30,11 +30,11 @@ Chatbot for company documentation based on local LLM model and vector db
 
 1. Start application
     ```shell
-    npm run start
+    npm run start -- your query
     ```
 
 ## Scripts and others
-- `npm run start:dev` - start application from ts
+- `npm run start:dev -- your query` - start application from ts
 - `npm run scripts:build-database` - scrap and build .md files from sources
 
 ## Author
