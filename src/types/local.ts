@@ -2,6 +2,7 @@ export type Settings = {
   llm: {
     host: string
     model: string
+    embeddingModel: string
   }
   qdrant: {
     url: string

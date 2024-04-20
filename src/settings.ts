@@ -9,6 +9,7 @@ export const settings: Settings = {
   llm: {
     host: process.env.OLLAMA_HOST || '',
     model: process.env.LLM_MODEL || '',
+    embeddingModel: process.env.LLM_EMBEDDING_MODEL || '',
   },
   qdrant: {
     url: process.env.QDRANT_URL || '',

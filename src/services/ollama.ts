@@ -17,6 +17,6 @@ export async function chat(ollama: Ollama, systemMessage: string, userMessage: s
 }
 
 export async function getEmbedding(ollama: Ollama, prompt: string): Promise<number[]> {
-  const { embedding } = await ollama.embeddings({ model: settings.llm.model, prompt })
+  const { embedding } = await ollama.embeddings({ model: settings.llm.embeddingModel, prompt })
   return embedding
 }

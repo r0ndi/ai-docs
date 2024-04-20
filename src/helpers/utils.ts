@@ -10,6 +10,7 @@ export const parseTitle: (content: string) => string = R.pipe(
 
 export const parseContent: (content: string) => string[] = R.pipe(
   content => '\n' + content,
+  R.replace(/`/g, ''),
   R.split(/\n(?=# )/),
   R.filter((part: string) => part.trim() !== '')
 )
