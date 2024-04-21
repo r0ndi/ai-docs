@@ -12,6 +12,7 @@ import * as fs from 'fs'
 process.on('unhandledRejection', handleError)
 
 const BATCH_SIZE = 10
+const MIN_CONTENT_LENGHT = 100
 const COLLECTION_NAME = 'documents'
 const UUID_NAMESPACE = 'a4eec4ee-77df-46b0-83eb-b13ccf46d2f4'
 
@@ -77,7 +78,7 @@ function parseSourceFilePart(parentId: string, source: string, content: string, 
 }
 
 function minContentLength({ content }: SourceFile): boolean {
-  return content.length > 100
+  return content.length > MIN_CONTENT_LENGHT
 }
 
 main()
