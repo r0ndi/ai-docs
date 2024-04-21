@@ -65,13 +65,19 @@ async function parseSourceFile(sourceDir: string, filename: string): Promise<Sou
   const [{ pageContent }] = await loader.load()
   const contents = parseContent(pageContent)
   const parentId = v5(filename, UUID_NAMESPACE)
-  return contents.map((content: string, index: number) => parseSourceFilePart(parentId, filename, content, index))
+  return contents
+    .map((content: string, index: number) => parseSourceFilePart(parentId, filename, content, index))
+    .filter(minContentLength)
 }
 
 function parseSourceFilePart(parentId: string, source: string, content: string, index: number): SourceFile {
   const title = parseTitle(content)
   const id = v5(`${index}: ${title}`, UUID_NAMESPACE)
   return { id, parentId, title, content, source }
+}
+
+function minContentLength({ content }: SourceFile): boolean {
+  return content.length > 100
 }
 
 main()

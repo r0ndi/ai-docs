@@ -3,7 +3,7 @@ import { QdrantSearchResponse } from './../types/local'
 import * as ollamaService from './ollama'
 import * as qdrantService from './qdrant'
 
-const CONTEXT_ITEMS = 3
+const CONTEXT_ITEMS = 5
 
 export async function getAssistentAnswer(userMessage: string): Promise<AssistentResponse> {
   const qdrantClient = qdrantService.createClient()
